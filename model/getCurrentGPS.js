@@ -7,13 +7,11 @@ function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(returnPosition);
     } else {
-        console.log("Geolocation is not supported by this browser");
+        alert("Geolocation is not supported by this browser");
     }
 // Takes the position passed to it by getCurrentLocation and returns it
-function returnPosition(position) {
-//        GPSPoint.x = position.coords.latitude;
-//        GPSPoint.y = position.coords.longitude;
-    console.log(position);
+function returnGPSPosition(position) {
+//    console.log(position);
     return position;
 
     }
