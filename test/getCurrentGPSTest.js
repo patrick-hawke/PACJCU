@@ -3,7 +3,7 @@
  */
 TestCase("TestGetCurrentGPS", {
     "test GetCurrentGPS": function() {
-
+        console.log(getLocation());
         assertNotNull(getLocation());
     }
 });
