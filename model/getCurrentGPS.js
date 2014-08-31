@@ -7,7 +7,6 @@ var gpsPosition;
 function getLocation() {
     if (navigator.geolocation) {
         function onSuccess(position) {
-//            console.log(position);
             gpsPosition = position;
         }
         function onError() {

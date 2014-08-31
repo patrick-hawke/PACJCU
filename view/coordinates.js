@@ -8,12 +8,12 @@
     // Executes when the page loads
     window.onload = function() {
         setInterval(function () {
-            var pos = getLocation();
-//            console.log(pos);
-            if (pos) {
-                x.innerHTML = "Latitude: " + pos.coords.latitude +
-                    "<br>Longitude: " + pos.coords.longitude;
-
+            var currentGPSPos = getLocation();
+            if (currentGPSPos) {
+                x.innerHTML = "Latitude: " + currentGPSPos.coords.latitude +
+                    "<br>Longitude: " + currentGPSPos.coords.longitude;
+            }
+            if (getPlayerBoardPosition()) {
                 y.innerHTML = getPlayerBoardPosition();
             }
         }, 2000);
