@@ -3,16 +3,19 @@
  */
 //var GPSPoint = new Point();
 // Get the current GPS position from the Devices GPS if supported
+var gpsPosition;
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(returnGPSPosition);
-    } else {
+        function onSuccess(position) {
+//            console.log(position);
+            gpsPosition = position;
+        }
+        function onError() {
+            alert("Do you have location services turned on?");
+        }
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+     } else {
         alert("Geolocation is not supported by this browser");
     }
-
-// Takes the position passed to it by getCurrentLocation and returns it
-function returnGPSPosition(position) {
-    console.log(position);
-    return position;
-    }
+    return gpsPosition;
 }
