@@ -3,25 +3,24 @@
  */
 var playerCurrentBoardXPos, playerCurrentBoardYPos, boardCentreX, boardCentreY,boardCentrePos, playerBoardPos ;
 // Get the currnt GPS coordinates and assign them to the game board centre X and Y  Conrdinates
+var LATDIVISOR = 0.0000011;
+var LONDIVISOR = 0.0000024;
+
 function setBoardCentre() {
- //   do {
-        boardCentrePos = getLocation();
-        if (boardCentrePos) {
-            boardCentreX = boardCentrePos.coords.latitude;
-            boardCentreY = boardCentrePos.coords.longitude;
-        }
-//    } while (!boardCentrePos);
+    boardCentrePos = getLocation();
+    if (boardCentrePos) {
+        boardCentreX = boardCentrePos.coords.latitude;
+        boardCentreY = boardCentrePos.coords.longitude;
+    }
 }
 // Compare the current GPS coordinates to the Board game centre coordinates
 function getPlayerBoardPosition() {
     if (boardCentreX != null && boardCentreY != null) {
-//        do {
-            playerBoardPos = getLocation();
-            if (playerBoardPos) {
-                playerCurrentBoardXPos = boardCentreX - playerBoardPos.coords.latitude;
-                playerCurrentBoardYPos = boardCentreY - playerBoardPos.coords.longitude;
-                return playerCurrentBoardXPos + " , " + playerCurrentBoardYPos;
-            }
-//        } while (!playerBoardPos);
+        playerBoardPos = getLocation();
+        if (playerBoardPos) {
+            playerCurrentBoardXPos = ((boardCentreX - playerBoardPos.coords.latitude)/LATDIVISOR).toFixed(0);
+            playerCurrentBoardYPos = ((boardCentreY - playerBoardPos.coords.longitude)/LONDIVISOR).toFixed(0);
+            return playerCurrentBoardXPos + " , " + playerCurrentBoardYPos;
+        }
     }
 }
