@@ -12,7 +12,12 @@ function getLocation() {
         function onError() {
             alert("Do you have location services turned on?");
         }
-        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        navigator.geolocation.getCurrentPosition(onSuccess, onError,{
+                timeout: 0,
+                enableHighAccuracy: true,
+                maximumAge: Infinity
+            }
+        );
      } else {
         alert("Geolocation is not supported by this browser");
     }

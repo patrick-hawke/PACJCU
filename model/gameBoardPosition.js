@@ -18,8 +18,10 @@ function getPlayerBoardPosition() {
     if (boardCentreX != null && boardCentreY != null) {
         playerBoardPos = getLocation();
         if (playerBoardPos) {
-            playerCurrentBoardXPos = ((boardCentreX - playerBoardPos.coords.latitude)/LATDIVISOR).toFixed(0);
-            playerCurrentBoardYPos = ((boardCentreY - playerBoardPos.coords.longitude)/LONDIVISOR).toFixed(0);
+//            playerCurrentBoardXPos = ((boardCentreX - playerBoardPos.coords.latitude)/LATDIVISOR).toFixed(0);
+//            playerCurrentBoardYPos = ((boardCentreY - playerBoardPos.coords.longitude)/LONDIVISOR).toFixed(0);
+            playerCurrentBoardXPos = ((boardCentreX - playerBoardPos.coords.latitude));
+            playerCurrentBoardYPos = ((boardCentreY - playerBoardPos.coords.longitude));
             return playerCurrentBoardXPos + " , " + playerCurrentBoardYPos;
         }
     }
