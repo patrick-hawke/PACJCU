@@ -9,10 +9,15 @@ function getLocation() {
         function onSuccess(position) {
             gpsPosition = position;
         }
+
+        function tryNoHighAccuracy() {
+            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        }
+
         function onError() {
             alert("Do you have location services turned on?");
         }
-        navigator.geolocation.getCurrentPosition(onSuccess, onError,{
+        navigator.geolocation.getCurrentPosition(onSuccess, tryNoHighAccuracy,{
                 timeout: 0,
                 enableHighAccuracy: true,
                 maximumAge: Infinity
