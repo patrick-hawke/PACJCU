@@ -10,6 +10,7 @@ function getLocation() {
             gpsPosition = position;
         }
 
+        // error for phones not supporting gps accuracy
         function tryNoHighAccuracy() {
             navigator.geolocation.getCurrentPosition(onSuccess, onError);
         }
@@ -17,10 +18,11 @@ function getLocation() {
         function onError() {
             alert("Do you have location services turned on?");
         }
+
         navigator.geolocation.getCurrentPosition(onSuccess, tryNoHighAccuracy,{
-                timeout: 0,
+                timeout: 1000,
                 enableHighAccuracy: true,
-                maximumAge: Infinity
+                maximumAge: 1500
             }
         );
      } else {
