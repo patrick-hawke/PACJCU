@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html>
     <head>
         <title>Player</title>
@@ -6,6 +6,28 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="bootstrap.css" rel="stylesheet">
         <link href="smartech.css" rel="stylesheet">
+
+        <script type="text/javascript" charset="utf-8" src="../model/js/jquery-1.11.1.min.js"></script>
+
+        <script type="text/javascript" src="../model/js/grid.js"></script>
+        <script type="text/javascript" src="../model/js/version.js"></script>
+        <script type="text/javascript" src="../model/js/detector.js"></script>
+        <script type="text/javascript" src="../model/js/formatinf.js"></script>
+        <script type="text/javascript" src="../model/js/errorlevel.js"></script>
+        <script type="text/javascript" src="../model/js/bitmat.js"></script>
+        <script type="text/javascript" src="../model/js/datablock.js"></script>
+        <script type="text/javascript" src="../model/js/bmparser.js"></script>
+        <script type="text/javascript" src="../model/js/datamask.js"></script>
+        <script type="text/javascript" src="../model/js/rsdecoder.js"></script>
+        <script type="text/javascript" src="../model/js/gf256poly.js"></script>
+        <script type="text/javascript" src="../model/js/gf256.js"></script>
+        <script type="text/javascript" src="../model/js/decoder.js"></script>
+        <script type="text/javascript" src="../model/js/QRCode.js"></script>
+        <script type="text/javascript" src="../model/js/findpat.js"></script>
+        <script type="text/javascript" src="../model/js/alignpat.js"></script>
+        <script type="text/javascript" src="../model/js/databr.js"></script>
+
+        <script type="text/javascript" src="../utility/megapix-image.js"></script>
 
 
     </head>
@@ -48,19 +70,25 @@
                         <div class="col-lg-12" style="margin-top: 20px">
                             <button class="btn btn-info" onclick="" style="width: 100%">Photograph QRCode</button>
                             <span class="help-block col-lg-12">Helper text here</span>
+
+                            <input id="selectFile" type="file" accept="image/*" capture>
                         </div>
                     </div>
 
                     <div class="row text-center">
                         <div class="col-lg-12">
-                            <img src="http://www.qrstuff.com/images/sample.png" alt="" style="width: 60%; margin-top: 5px; margin-bottom: 5px">
+                            <div id="printImage"></div>
+                            <canvas id="theCanvas"> </canvas>
+<!--                            <img src="http://www.qrstuff.com/images/sample.png" alt="" style="width: 60%; margin-top: 5px; margin-bottom: 5px"> -->
                         </div>
                     </div>
+
 
                     <div class="row text-center">
                         <div class="col-lg-12">
                             <button class="btn btn-info" onclick="" style="width: 100%">Interpret QRCode</button>
                             <span class="help-block col-lg-12">Helper text here</span>
+                            <p id="QRvalue"></p>
                         </div>
 
                     </div>
@@ -70,6 +98,8 @@
 
         <script src="../model/getCurrentGPS.js"></script>
         <script src="../model/gameBoardPosition.js"></script>
+
+        <script type="text/javascript" src="QRImage.js"></script>
 
         <script src="coordinates.js"></script>
     </body>
