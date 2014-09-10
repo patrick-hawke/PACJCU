@@ -22,13 +22,12 @@ function getLocation() {
                 alert("Do you have location services turned on?");
                 counter ++;
             }
-
         }
 
         navigator.geolocation.getCurrentPosition(onSuccess, tryNoHighAccuracy, {
-                timeout: 2000,
+                timeout: 1000,
                 enableHighAccuracy: true,
-                maximumAge: 3000
+                maximumAge: 1500
             }
         );
      } else {
