@@ -3,7 +3,7 @@
  */
 //var GPSPoint = new Point();
 // Get the current GPS position from the Devices GPS if supported
-var gpsPosition;
+var gpsPosition, counter = 0;
 function getLocation() {
     if (navigator.geolocation) {
         function onSuccess(position) {
@@ -11,18 +11,24 @@ function getLocation() {
         }
 
         // error for phones not supporting gps accuracy
-        function tryNoHighAccuracy() {
+        function tryNoHighAccuracy(error) {
+            // alert(error.code);
             navigator.geolocation.getCurrentPosition(onSuccess, onError);
         }
 
-        function onError() {
-            alert("Do you have location services turned on?");
+        function onError(error) {
+           // alert(error.code);
+            if (counter == 0) {
+                alert("Do you have location services turned on?");
+                counter ++;
+            }
+
         }
 
-        navigator.geolocation.getCurrentPosition(onSuccess, tryNoHighAccuracy,{
-                timeout: 1000,
+        navigator.geolocation.getCurrentPosition(onSuccess, tryNoHighAccuracy, {
+                timeout: 2000,
                 enableHighAccuracy: true,
-                maximumAge: 1500
+                maximumAge: 3000
             }
         );
      } else {
