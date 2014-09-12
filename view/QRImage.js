@@ -7,17 +7,19 @@ var filename, imageFile, mpImage, img;
 
 function imageHandler(e2) {
     console.log("imagehandler");
-    var store = document.getElementById('printImage');
-    store.innerHTML='<img src="' + e2.target.result +'" width="250" height="250" style="border: 1px solid black">';
-    var canvas1 = document.getElementById('theCanvas');
-    ctx = canvas1.getContext('2d');
     imageFile = e2.target.result;
+    var store = document.getElementById('printImage');
+    store.innerHTML='<img src="' + imageFile +'" width="250" height="250" style="border: 1px solid black">';
+    var canvas1 = document.getElementById('theCanvas');
+//    ctx = canvas1.getContext('2d');
+
     console.log(imageFile);
     mpImage = new MegaPixImage(imageFile);
+    mpImage.render(canvas1, { width: 200, height: 200, orientation: 6});
     console.log(mpImage);
-    img = new Image();
-    img.src = mpImage.srcImage;
-    ctx.drawImage(img, 0,0, canvas1.width, canvas1.height);
+//    img = new Image();
+//    img.src = mpImage.srcImage;
+//    ctx.drawImage(img, 0,0, canvas1.width, canvas1.height);
 //    mpImage.render(canvas1, { width: 2250, height: 2250, orientation: 6});
 //    decodeImage();
 }
