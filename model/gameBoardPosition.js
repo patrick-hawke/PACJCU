@@ -3,6 +3,7 @@
  */
 var playerCurrentBoardXPos, playerCurrentBoardYPos, boardCentreX, boardCentreY,boardCentrePos, playerBoardPos ;
 // Get the current GPS coordinates and assign them to the game board centre X and Y  Coordinates
+// The divisors adjust the coordinates for a 5 metre cell
 var LATDIVISOR = 0.0000292;
 var LONDIVISOR = 0.0000477;
 
@@ -20,8 +21,6 @@ function getPlayerBoardPosition() {
         if (playerBoardPos) {
             playerCurrentBoardXPos = ((boardCentreX - playerBoardPos.coords.longitude)/LONDIVISOR).toFixed(0);
             playerCurrentBoardYPos = ((boardCentreY - playerBoardPos.coords.latitude)/LATDIVISOR).toFixed(0);
-//            playerCurrentBoardXPos = ((boardCentreX - playerBoardPos.coords.longitude);
-//            playerCurrentBoardYPos = ((boardCentreY - playerBoardPos.coords.latitude);
 
             return playerCurrentBoardXPos + " , " + playerCurrentBoardYPos;
         }
