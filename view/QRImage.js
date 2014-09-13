@@ -1,35 +1,49 @@
-/**
- * Created by pat on 09/09/2014.
- */
+//*
+//* Created by pat on 09/09/2014.
+//*
 var inputFile = document.getElementById('selectFile');
 inputFile.addEventListener('change', loadImage, false);
-var filename, imageFile, mpImage, img;
+var fileName, img, mpImg, cnvs, compressedImage, outputFormat = "jpg";
+
+var MAXIMAGESIZE = 250, iWidth, iHeight, getImage, ctx;
 
 function imageHandler(e2) {
     console.log("imagehandler");
-    imageFile = e2.target.result;
-    var store = document.getElementById('printImage');
-    store.innerHTML='<img src="' + imageFile +'" width="250" height="250" style="border: 1px solid black">';
-    var canvas1 = document.getElementById('theCanvas');
-//    ctx = canvas1.getContext('2d');
+    mpImg = new MegaPixImage(fileName);
+//    img = e2.target.result;
+//    var rawImg = document.getElementById('printImage');
+//    rawImg.src = img;
+//    rawImg.innerHTML = '<img src="' + img + '" width="250" height="250" style="border: 1px solid black">';
+    cnvs = document.getElementById('theCanvas');
+    ctx = cnvs.getContext("2d");
+    console.log(fileName);
+    console.log(mpImg);
+    console.log(mpImg.srcImage.width);
+    //Insert a delay to overcome the asynchronous nature of MegaPixImage
+    setTimeout( waitForMegaPix, 1000 );
+}
 
-    console.log(imageFile);
-    mpImage = new MegaPixImage(imageFile);
-    mpImage.render(canvas1, { width: 200, height: 200, orientation: 6});
-    console.log(mpImage);
-//    img = new Image();
-//    img.src = mpImage.srcImage;
-//    ctx.drawImage(img, 0,0, canvas1.width, canvas1.height);
-//    mpImage.render(canvas1, { width: 2250, height: 2250, orientation: 6});
-//    decodeImage();
+function waitForMegaPix() {
+
+    if (mpImg.srcImage.width > mpImg.srcImage.height) {
+        iWidth = 250;
+        iHeight = 250 * mpImg.srcImage.height/mpImg.srcImage.width;
+    } else {
+        iHeight = 250;
+        iWidth = 250 * mpImg.srcImage.width/mpImg.srcImage.height;
+    }
+    console.log(iWidth + " " + iHeight);
+    mpImg.render(cnvs, { width: iWidth, height: iHeight });
+    getImage = cnvs.toDataURL("image/jpg");
+    decodeImage();
 }
 
 function loadImage(e1) {
     console.log("loadImage");
-    filename = e1.target.files[0];
+    fileName = e1.target.files[0];
     var fr = new FileReader();
     fr.onload = imageHandler;
-    fr.readAsDataURL(filename);
+    fr.readAsDataURL(fileName);
 }
 
 function presentDecodeResult(result) {
@@ -40,46 +54,7 @@ function presentDecodeResult(result) {
 
 function decodeImage() {
     console.log("decodeImage");
+    console.log(getImage);
     qrcode.callback = presentDecodeResult;
-    qrcode.decode(img);
+    qrcode.decode(getImage);
 }
-
-
-///**
-//* Created by pat on 09/09/2014.
-//*/
-//var inputFile = document.getElementById('selectFile');
-//inputFile.addEventListener('change', loadImage, false);
-//var filename, imageFile, mpImage;
-//
-//function imageHandler(e2) {
-//    console.log("imagehandler");
-//    var canvas1 = document.getElementById('theCanvas');
-////    ctx = canvas1.getContext('2d');
-//    imageFile = e2.target.result;
-//    console.log(imageFile);
-//    mpImage = new MegaPixImage(imageFile);
-//    console.log(mpImage);
-//    mpImage.render(canvas1, { width: 2250, height: 2250, orientation: 6});
-//    decodeImage();
-//}
-//
-//function loadImage(e1) {
-//    console.log("loadImage");
-//    filename = e1.target.files[0];
-//    var fr = new FileReader();
-//    fr.onload = imageHandler;
-//    fr.readAsDataURL(filename);
-//}
-//
-//function presentDecodeResult(result) {
-//    console.log("processDecode");
-//    var presentValue = document.getElementById("QRvalue");
-//    presentValue.innerHTML = result;
-//}
-//
-//function decodeImage() {
-//    console.log("decodeImage");
-//    qrcode.callback = presentDecodeResult;
-//    qrcode.decode(mpImage.srcImage);
-//}
