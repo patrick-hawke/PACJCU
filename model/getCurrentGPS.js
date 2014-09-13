@@ -26,7 +26,6 @@ function getLocation() {
         }
 
         function onError(error) {
-           alert(error.code);
             if (counter == 0) {
                 alert("Do you have location services turned on?");
             }
