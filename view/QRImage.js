@@ -5,16 +5,17 @@ var inputFile = document.getElementById('selectFile');
 var fileName, mpImg, cnvs, iWidth, iHeight, getImage, presentValue, fr;
 var MAXIMAGESIZE = 250;
 
-inputFile.addEventListener('change', loadImage, false);
+inputFile.addEventListener('change', imageHandler, false);
 
-function imageHandler(e2) {
+function imageHandler(e) {
+    fileName = e.target.files[0];
     mpImg = new MegaPixImage(fileName);
     cnvs = document.getElementById('theCanvas');
     //Insert a delay to overcome the asynchronous nature of MegaPixImage
-    setTimeout( waitForMegaPix, 1000 );
+    setTimeout( renderImage, 1000 );
 }
 
-function waitForMegaPix() {
+function renderImage() {
     if (mpImg.srcImage.width > mpImg.srcImage.height) {
         iWidth = 250;
         iHeight = 250 * mpImg.srcImage.height/mpImg.srcImage.width;
@@ -25,13 +26,6 @@ function waitForMegaPix() {
     mpImg.render(cnvs, { width: iWidth, height: iHeight });
     getImage = cnvs.toDataURL("image/jpg");
     decodeImage();
-}
-
-function loadImage(e1) {
-    fileName = e1.target.files[0];
-    fr = new FileReader();
-    fr.onload = imageHandler;
-    fr.readAsDataURL(fileName);
 }
 
 function presentDecodeResult(result) {
