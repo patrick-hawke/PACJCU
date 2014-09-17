@@ -10,9 +10,7 @@ inputFile.addEventListener('change', imageHandler, false);
 function imageHandler(e) {
     fileName = e.target.files[0];
     mpImg = new MegaPixImage(fileName);
-
-    //Insert a delay to wait for asynchronous MegaPixImage
-    setTimeout( renderImage, 1000 );
+    mpImg.onload(renderImage());
 }
 
 function renderImage() {
@@ -26,15 +24,5 @@ function renderImage() {
     cnvs = document.getElementById('theCanvas');
     mpImg.render(cnvs, { width: iWidth, height: iHeight });
     getReducedImage = cnvs.toDataURL("image/jpg");
-    decodeImage();
-}
-
-function presentDecodeResult(result) {
-    presentValue = document.getElementById("QRvalue");
-    presentValue.innerHTML = result;
-}
-
-function decodeImage() {
-    qrcode.callback = presentDecodeResult;
-    qrcode.decode(getReducedImage);
+    decodeImage(getReducedImage);
 }
