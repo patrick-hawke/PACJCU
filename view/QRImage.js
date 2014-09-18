@@ -9,8 +9,11 @@ inputFile.addEventListener('change', imageHandler, false);
 
 function imageHandler(e) {
     fileName = e.target.files[0];
+
     mpImg = new MegaPixImage(fileName);
-    mpImg.onload(renderImage());
+ //   callback(mpImg);
+//    mpImg.onload(renderImage());
+    setTimeout(renderImage, 1000);
 }
 
 function renderImage() {
