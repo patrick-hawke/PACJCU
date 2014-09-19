@@ -19,7 +19,7 @@
 
             // If board centre has been set, adjust board co-ord as gps moves
             if (getPlayerBoardPosition()) {
-                gameCoord.innerHTML = getPlayerBoardPosition();
+                gameCoord.innerHTML = getPlayerBoardPosition().toString();
             }
         }, 2000);
      };

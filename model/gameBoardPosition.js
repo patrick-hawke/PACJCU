@@ -1,7 +1,7 @@
 /**
  * Created by pat on 30/08/2014.
  */
-var playerCurrentBoardXPos, playerCurrentBoardYPos, boardCentreX, boardCentreY,boardCentrePos, playerBoardPos ;
+var boardCentreX, boardCentreY,boardCentrePos, playerBoardPos ;
 // Get the current GPS coordinates and assign them to the game board centre X and Y  Coordinates
 // The divisors adjust the coordinates for a 5 metre cell
 var LATDIVISOR = 0.0000292;
@@ -19,10 +19,11 @@ function getPlayerBoardPosition() {
     if (boardCentreX != null && boardCentreY != null) {
         playerBoardPos = getLocation();
         if (playerBoardPos) {
-            playerCurrentBoardXPos = ((boardCentreX - playerBoardPos.coords.longitude)/LONDIVISOR).toFixed(0);
-            playerCurrentBoardYPos = ((boardCentreY - playerBoardPos.coords.latitude)/LATDIVISOR).toFixed(0);
+            var gamePoint = new Point();
+            gamePoint.x = ((boardCentreX - playerBoardPos.coords.longitude)/LONDIVISOR).toFixed(0);
+            gamePoint.x = ((boardCentreY - playerBoardPos.coords.latitude)/LATDIVISOR).toFixed(0);
 
-            return playerCurrentBoardXPos + " , " + playerCurrentBoardYPos;
+            return gamePoint;
         }
     }
 }

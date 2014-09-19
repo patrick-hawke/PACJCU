@@ -4,11 +4,10 @@
 //var GPSPoint = new Point();
 // Get the current GPS position from the Devices GPS if supported
 var gpsPosition, counter = 0;
-// This is for windows phones.  Gets past the sandbox.
-browser.IsGeolocationEnabled = true;
 function getLocation() {
     // Check if navigator is supported by the device
     if (navigator.geolocation) {
+        navigator.geolocation.IsGeolocationEnabled = true;
         function onSuccess(position) {
             gpsPosition = position;
         }
@@ -25,7 +24,7 @@ function getLocation() {
             );
         }
 
-        function onError(error) {
+        function onError() {
             if (counter == 0) {
                 alert("Do you have location services turned on?");
             }
