@@ -5,7 +5,7 @@
 TestCase("TestDecodeQRCode", {
     "test DecodeQRCode": function() {
  //       var testFile = new file
-        var image = new MegaPixImage("/test/Apple.jpg");
+        var image = new MegaPixImage("c:\Apple.jpg");
 
         setTimeout(assertEquals("Apple", decodeImage(image)), 2000);
     }
