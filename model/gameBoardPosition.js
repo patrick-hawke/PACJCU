@@ -6,6 +6,7 @@ var boardCentreX, boardCentreY,boardCentrePos, playerBoardPos ;
 // The divisors adjust the coordinates for a 5 metre cell
 var LATDIVISOR = 0.0000292;
 var LONDIVISOR = 0.0000477;
+var gamePoint = new Point();
 
 function setBoardCentre() {
     boardCentrePos = getLocation();
@@ -19,7 +20,6 @@ function getPlayerBoardPosition() {
     if (boardCentreX != null && boardCentreY != null) {
         playerBoardPos = getLocation();
         if (playerBoardPos) {
-            var gamePoint = new Point();
             gamePoint.x = ((boardCentreX - playerBoardPos.coords.longitude)/LONDIVISOR).toFixed(0);
             gamePoint.x = ((boardCentreY - playerBoardPos.coords.latitude)/LATDIVISOR).toFixed(0);
 
