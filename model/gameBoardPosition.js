@@ -20,8 +20,9 @@ function getPlayerBoardPosition() {
     if (boardCentreX != null && boardCentreY != null) {
         playerBoardPos = getLocation();
         if (playerBoardPos) {
+
             gamePoint.x = ((boardCentreX - playerBoardPos.coords.longitude)/LONDIVISOR).toFixed(0);
-            gamePoint.x = ((boardCentreY - playerBoardPos.coords.latitude)/LATDIVISOR).toFixed(0);
+            gamePoint.y = ((boardCentreY - playerBoardPos.coords.latitude)/LATDIVISOR).toFixed(0);
 
             return gamePoint;
         }
