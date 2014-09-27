@@ -3,7 +3,8 @@
  */
 TestCase("TestGameBoardPosition", {
     "test gameBoardPosition": function() {
-        assertEquals("Undefined", undefined, getPlayerBoardPosition());
+        clearGameBoardPosition();
+        assertEquals(undefined, getPlayerBoardPosition());
         setBoardCentre();
         assertNotNull(getPlayerBoardPosition());
     }

@@ -4,9 +4,19 @@
 
 TestCase("TestDecodeQRCode", {
     "test DecodeQRCode": function() {
- //       var testFile = new file
-        var image = new MegaPixImage("c:\Apple.jpg");
+//        var hiddenInput = document.createElement("input");
+//        hiddenInput.setAttribute("id", "testFile");
+//        hiddenInput.setAttribute("type", "file");
+//        hiddenInput.setAttribute("value", "Apple.jpg");
+//        hiddenInput.setAttribute("display", "hidden");
+//        hiddenInput.onload("load")
+//
+//        var fileName = document.getElementById("testFile").files[0];
+        var fileName = new File("Apple.jpg");
+        console.log(fileName);
+        var image = new MegaPixImage(fileName);
+        console.log(image);
 
-        setTimeout(assertEquals("Apple", decodeImage(image)), 2000);
+        setTimeout(assertEquals("Apple", decodeImage(image)), 12000);
     }
 });

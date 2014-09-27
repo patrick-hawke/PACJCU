@@ -9,11 +9,10 @@ inputFile.addEventListener('change', imageHandler, false);
 
 function imageHandler(e) {
     fileName = e.target.files[0];
+//    var file = "c:\\Apple.jpg";
+//    var file2 = new File(file);
     console.log(fileName);
-
     mpImg = new MegaPixImage(fileName);
- //   callback(mpImg);
-//    mpImg.onload(renderImage());
     setTimeout(renderImage, 1000);
 }
 
