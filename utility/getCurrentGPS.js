@@ -6,6 +6,7 @@
     var counter = 0;
     // Check if navigator is supported by the device
     if (navigator.geolocation) {
+        // Enable geolocation because some devices disable it by default
         navigator.geolocation.IsGeolocationEnabled = true;
 
         function onSuccess(position) {
@@ -17,12 +18,14 @@
             }
             counter ++;
         }
-
+        // Try high accuracy first then fallback to low accuracy
+        // Observer to track changes to the GPS position for devices that do not support high accuracy
         if (counter > 1) {
             navigator.geolocation.watchPosition(onSuccess, onError, {
                     enableHighAccuracy: false
                 }
             );
+        // Observer to track changes to the GPS position for devices that support high accuracy
         } else {
             navigator.geolocation.watchPosition(onSuccess, onError, {
                     enableHighAccuracy: true

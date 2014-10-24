@@ -12,13 +12,15 @@ function clearGameBoardPosition() {
     boardCentreY = null;
 }
 
-// Get the current GPS coordinates and assign them to the game board centre X and Y  Coordinates
+// Get the current GPS coordinates and assign them to the game board centre X and Y Coordinates
 function setBoardCentre(gpsPosition) {
     boardCentreX = gpsPosition.coords.longitude;
     boardCentreY = gpsPosition.coords.latitude;
 }
-// Compare the current GPS coordinates to the Board game centre coordinates
+// Compare the current GPS coordinates to the Board game centre coordinates to
+// determine the current game x,y coordinates
 function getPlayerBoardPosition(gpsPosition) {
+    // Make sure the game board position has been set
     if (boardCentreX != null && boardCentreY != null) {
         playerPoint.x = ((boardCentreX - gpsPosition.coords.longitude)/LONDIVISOR).toFixed(0);
         playerPoint.y = ((boardCentreY - gpsPosition.coords.latitude)/LATDIVISOR).toFixed(0);

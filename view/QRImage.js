@@ -9,13 +9,16 @@ var destinationQRURL = "something.com/somelink";
 
 inputFile.addEventListener('change', imageHandler, false);
 
+// Take the selected or captured file and create a Megapixel image
 function imageHandler(e) {
     fileName = e.target.files[0];
     mpImg = new MegaPixImage(fileName);
     setTimeout(presentImage, 1000);
 }
 
+// Write the image to a canvas at a reduced size then read it back at the reduced size
 function presentImage() {
+    // Preserve the image width/height ration for the reduced image
     if (mpImg.srcImage.width > mpImg.srcImage.height) {
         iWidth = MAXIMAGESIZE;
         iHeight = MAXIMAGESIZE * mpImg.srcImage.height/mpImg.srcImage.width;
@@ -27,6 +30,8 @@ function presentImage() {
     mpImg.render(cnvs, { width: iWidth, height: iHeight });
     getReducedImage = cnvs.toDataURL("image/jpg");
 
+    // Decode the image and print its value if the HTML element is present
+    // otherwise post the value to the game logic
     decodeImage(getReducedImage, function(result) {
         if (presentValue) {
             presentValue.innerHTML = result;

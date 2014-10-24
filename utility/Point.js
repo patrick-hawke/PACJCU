@@ -4,7 +4,7 @@
 function Point(x,y){
     this.x = x;
     this.y = y;
-
+    // Check that this point is equal to another point in value.
     this.equals = function(point){
         if((point.x === x) && (point.y === y)){
             return true;

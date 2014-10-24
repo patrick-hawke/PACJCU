@@ -3169,9 +3169,11 @@ function QRCodeDataBlockReader(blocks,  version,  numErrorCorrectionCode)
  *
  **********************************************************************************************************************************/
 var __presentationHandler;
+//Callback function to return the Decoded QR code result to the passed in function
 function returnDecodeResult(result) {
     __presentationHandler(result);
 }
+// Decode the QR code
 function decodeImage(image, presentationHandler ) {
     __presentationHandler = presentationHandler;
     qrcode.callback = returnDecodeResult;
